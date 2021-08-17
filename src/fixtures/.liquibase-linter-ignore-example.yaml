@@ -1,0 +1,3 @@
+ignores:
+  - fileName: src/fixtures/20210609163846-several-failing-changeset.yaml
+    changeSet: 1623249542074-24

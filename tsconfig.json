@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "baseUrl": "src",
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["src", "tsconfig.build.json"]
+}
