@@ -2,7 +2,7 @@
 
 This linter is meant to check if your liquibase migrations follow some best practices.
 
-⚠️ Only works for yaml formatted liquibase migrations
+⚠️ Only works for json and yaml formatted liquibase migrations
 
 ## Available rules
 

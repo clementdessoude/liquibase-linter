@@ -1,0 +1,318 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": 1,
+        "author": "clementd",
+        "changes": [
+          {
+            "createTable": {
+              "tableName": "FF4J_FEATURES",
+              "columns": [
+                {
+                  "column": {
+                    "name": "FEAT_UID",
+                    "type": "varchar(100)",
+                    "constraints": {
+                      "primaryKey": true,
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "ENABLE",
+                    "type": "integer",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "DESCRIPTION",
+                    "type": "varchar(1000)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "STRATEGY",
+                    "type": "varchar(1000)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EXPRESSION",
+                    "type": "varchar(255)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "GROUPNAME",
+                    "type": "varchar(100)"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "createTable": {
+              "tableName": "FF4J_ROLES",
+              "columns": [
+                {
+                  "column": {
+                    "name": "FEAT_UID",
+                    "type": "varchar(100)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "ROLE_NAME",
+                    "type": "varchar(100)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "addForeignKeyConstraint": {
+              "baseColumnNames": "FEAT_UID",
+              "baseTableName": "FF4J_ROLES",
+              "constraintName": "FF4J_ROLES_FEAT_UID_FK",
+              "onDelete": "CASCADE",
+              "referencedColumnNames": "FEAT_UID",
+              "referencedTableName": "FF4J_FEATURES"
+            }
+          },
+          {
+            "addPrimaryKey": {
+              "columnNames": "FEAT_UID, ROLE_NAME",
+              "constraintName": "FF4J_ROLES_PK",
+              "tableName": "FF4J_ROLES"
+            }
+          },
+          {
+            "createTable": {
+              "tableName": "FF4J_CUSTOM_PROPERTIES",
+              "columns": [
+                {
+                  "column": {
+                    "name": "PROPERTY_ID",
+                    "type": "varchar(100)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "CLAZZ",
+                    "type": "varchar(255)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "CURRENTVALUE",
+                    "type": "varchar(255)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "FIXEDVALUES",
+                    "type": "varchar(1000)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "DESCRIPTION",
+                    "type": "varchar(1000)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "FEAT_UID",
+                    "type": "varchar(100)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "addForeignKeyConstraint": {
+                    "baseColumnNames": "FEAT_UID",
+                    "baseTableName": "FF4J_CUSTOM_PROPERTIES",
+                    "constraintName": "FF4J_CUSTOM_PROPERTIES_FEAT_UID_FK",
+                    "onDelete": "CASCADE",
+                    "referencedColumnNames": "FEAT_UID",
+                    "referencedTableName": "FF4J_FEATURES"
+                  }
+                },
+                {
+                  "addPrimaryKey": {
+                    "columnNames": "PROPERTY_ID, FEAT_UID",
+                    "constraintName": "FF4J_CUSTOM_PROPERTIES_PK",
+                    "tableName": "FF4J_CUSTOM_PROPERTIES"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "createTable": {
+              "tableName": "FF4J_PROPERTIES",
+              "columns": [
+                {
+                  "column": {
+                    "name": "PROPERTY_ID",
+                    "type": "varchar(100)",
+                    "constraints": {
+                      "primaryKey": true,
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "CLAZZ",
+                    "type": "varchar(255)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "CURRENTVALUE",
+                    "type": "varchar(255)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "FIXEDVALUES",
+                    "type": "varchar(1000)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "DESCRIPTION",
+                    "type": "varchar(1000)"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "createTable": {
+              "tableName": "FF4J_AUDIT",
+              "columns": [
+                {
+                  "column": {
+                    "name": "EVT_UUID",
+                    "type": "varchar(40)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EVT_TIME",
+                    "type": "timestamp",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EVT_TYPE",
+                    "type": "varchar(30)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EVT_NAME",
+                    "type": "varchar(30)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EVT_ACTION",
+                    "type": "varchar(30)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EVT_HOSTNAME",
+                    "type": "varchar(100)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EVT_SOURCE",
+                    "type": "varchar(30)",
+                    "constraints": {
+                      "nullable": false
+                    }
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EVT_DURATION",
+                    "type": "integer"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EVT_USER",
+                    "type": "varchar(30)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EVT_VALUE",
+                    "type": "varchar(100)"
+                  }
+                },
+                {
+                  "column": {
+                    "name": "EVT_KEYS",
+                    "type": "varchar(255)"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "addPrimaryKey": {
+              "columnNames": "EVT_UUID, EVT_TIME",
+              "constraintName": "FF4J_AUDIT_PK",
+              "tableName": "FF4J_AUDIT"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

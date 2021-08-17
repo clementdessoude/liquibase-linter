@@ -1,0 +1,32 @@
+{
+  "databaseChangeLog": [
+    {
+      "changeSet": {
+        "id": "1623249542074-23",
+        "author": "clement",
+        "changes": [
+          {
+            "dropColumn": {
+              "columnName": "column_name",
+              "tableName": "table_name"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "changeSet": {
+        "id": "1623249542074-24",
+        "author": "clement",
+        "changes": [
+          {
+            "dropTable": {
+              "columnName": "column_name",
+              "tableName": "table_name"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
