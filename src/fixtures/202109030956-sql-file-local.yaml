@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1627301803195-1
+      author: Nicolas Ngomai
+      changes:
+        - sqlFile:
+            path: ./some-local-path/script.sql

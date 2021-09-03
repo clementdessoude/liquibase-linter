@@ -61,6 +61,30 @@ describe("linter.ts", () => {
 
       expect(violations).toStrictEqual([]);
     });
+
+    it("should fail on importing sqlFile from other directory", () => {
+      const violations = lint("src/fixtures/202109030956-sql-file-remote.yaml", {
+        failOnErrors: true,
+      });
+
+      expect(violations).toStrictEqual([
+        {
+          level: "ERROR",
+          message: "The changeSet contains an sql script imported from another directory",
+          changeSetId: "1627301803196-1",
+          fileName: "src/fixtures/202109030956-sql-file-remote.yaml",
+        },
+      ]);
+      expect(mockExit).toHaveBeenCalledTimes(1);
+    });
+
+    it("should pass on changelog with sqlFile import from same directory", () => {
+      const violations = lint("src/fixtures/202109030956-sql-file-local.yaml", {
+        failOnErrors: false,
+      });
+
+      expect(violations).toStrictEqual([]);
+    });
   });
 
   describe("with json files", () => {

@@ -4,13 +4,12 @@ import * as fs from "fs";
 import startsWith from "lodash/startsWith";
 
 import { defaultConfiguration } from "./configuration";
-import { check as doNotUseBreakingChanges } from "./rules/do-not-use-breaking-changes";
+import { rules } from "./rules"
 import { LinterIgnore } from "./liquibaseIgnore";
 import { parser } from "./parser";
 import { Reporter } from "./reporter";
 
 export const lint = (fileName: string, configuration = defaultConfiguration) => {
-  console.debug("Lint", fileName);
 
   const reporter = new Reporter(fileName);
 
@@ -25,10 +24,11 @@ export const lint = (fileName: string, configuration = defaultConfiguration) => 
       return;
     }
 
-    doNotUseBreakingChanges(changeSet, reporter);
+    rules.forEach(checkRule => {
+      checkRule(changeSet, reporter)
+    });
   });
 
-  console.debug("Violations", reporter.violations);
   if (reporter.hasErrors() && configuration.failOnErrors) {
     process.exit(1);
   }
