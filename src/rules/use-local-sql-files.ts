@@ -7,6 +7,6 @@ export const check = (changeSet: ChangeSet, reporter: Reporter) => {
     return sqlFilePath && !sqlFilePath.startsWith('./')
   })
   if (hasRemoteSqlFilePath) {
-    reporter.error(`The changeSet contains an sql script imported from another directory`, changeSet.id);
+    reporter.error(`The changeSet contains an sql script imported from another directory. More details [here](https://github.com/clementdessoude/liquibase-linter/tree/main/src/rules/use-local-sql-files.md)`, changeSet.id);
   }
 };
