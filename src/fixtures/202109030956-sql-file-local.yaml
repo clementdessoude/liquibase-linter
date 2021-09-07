@@ -4,4 +4,4 @@ databaseChangeLog:
       author: Nicolas Ngomai
       changes:
         - sqlFile:
-            path: ./some-local-path/script.sql
+            path: db/changelog/changes/some-local-path/script.sql
