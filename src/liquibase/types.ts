@@ -12,4 +12,14 @@ export interface ChangeSet {
   changes: Change[];
 }
 
-export type Change = Record<string, unknown>;
+export type Change = { ["sqlFile"]: SqlFile };
+
+interface SqlFile {
+  path: string;
+  dbms?: string;
+  endDelimiter?: string;
+  splitStatements?: boolean;
+  stripComments?: boolean;
+  encoding?: string;
+  relativeToChangelogFile?: boolean;
+}
