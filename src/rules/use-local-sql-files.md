@@ -27,5 +27,6 @@ databaseChangeLog:
       id: 1627301803196-1
       changes:
         - sqlFile:
-            path: db/changelog/changes/data/script.sql
+            path: ./data/script.sql
+            relativeToChangelogFile: true
 ```

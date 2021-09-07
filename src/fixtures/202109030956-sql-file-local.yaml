@@ -4,4 +4,5 @@ databaseChangeLog:
       author: Nicolas Ngomai
       changes:
         - sqlFile:
-            path: db/changelog/changes/some-local-path/script.sql
+            path: ./some-local-path/script.sql
+            relativeToChangelogFile: true
