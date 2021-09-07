@@ -1,6 +1,6 @@
 {
   "name": "liquibase-linter",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "A liquibase linter in JS",
   "main": "dist/cjs/linter.js",
   "files": [
