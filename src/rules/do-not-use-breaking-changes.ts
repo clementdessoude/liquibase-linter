@@ -13,7 +13,7 @@ const hasBreakingChange = (changes: Set<string>) => {
   return false;
 };
 
-const getBreakingChanges = (changes: Set<String>) => {
+const getBreakingChanges = (changes: Set<string>) => {
   return breakingChanges.filter(breakingChange => changes.has(breakingChange));
 };
 

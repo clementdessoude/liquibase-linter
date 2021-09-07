@@ -54,7 +54,9 @@ const liquibaseLinterViolations = updatedFiles
   .flatMap(fileName => lint(fileName, liquibaseIgnoreConfig));
 
 liquibaseLinterViolations.forEach(violation =>
-  loggerByLevel[violation.level](`Changeset ${violation.changeSetId} from ${violation.fileName} fails with message: \n    ${violation.message}`)
+  loggerByLevel[violation.level](
+    `Changeset ${violation.changeSetId} from ${violation.fileName} fails with message: \n    ${violation.message}`
+  )
 );
 ```
 

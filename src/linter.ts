@@ -4,13 +4,12 @@ import * as fs from "fs";
 import startsWith from "lodash/startsWith";
 
 import { defaultConfiguration } from "./configuration";
-import { rules } from "./rules"
+import { rules } from "./rules";
 import { LinterIgnore } from "./liquibaseIgnore";
 import { parser } from "./parser";
 import { Reporter } from "./reporter";
 
 export const lint = (fileName: string, configuration = defaultConfiguration) => {
-
   const reporter = new Reporter(fileName);
 
   const absoluteFileName = startsWith(fileName, "/") ? fileName : `${process.cwd()}/${fileName}`;
@@ -25,7 +24,7 @@ export const lint = (fileName: string, configuration = defaultConfiguration) => 
     }
 
     rules.forEach(checkRule => {
-      checkRule(changeSet, reporter)
+      checkRule(changeSet, reporter);
     });
   });
 

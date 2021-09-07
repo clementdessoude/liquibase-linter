@@ -69,7 +69,8 @@ describe("linter.ts", () => {
       expect(violations).toStrictEqual([
         {
           level: "WARNING",
-          message: "The changeSet contains a sql script imported from another directory. More details [here](https://github.com/clementdessoude/liquibase-linter/tree/main/src/rules/use-local-sql-files.md)",
+          message:
+            "The changeSet contains a sql script imported from another directory. More details [here](https://github.com/clementdessoude/liquibase-linter/tree/main/src/rules/use-local-sql-files.md)",
           changeSetId: "1627301803196-1",
           fileName: "src/fixtures/202109030956-sql-file-remote.yaml",
         },

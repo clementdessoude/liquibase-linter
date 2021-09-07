@@ -1,6 +1,6 @@
 export enum ErrorLevel {
-  ERROR = 'ERROR',
-  WARNING = 'WARNING',
+  ERROR = "ERROR",
+  WARNING = "WARNING",
 }
 
 export interface Violation {
@@ -12,7 +12,7 @@ export interface Violation {
 
 export class Reporter {
   _violations: Violation[] = [];
-  fileName = '';
+  fileName = "";
 
   constructor(fileName: string) {
     this.fileName = fileName;
@@ -31,6 +31,6 @@ export class Reporter {
   }
 
   hasErrors() {
-    return this._violations.some((violation) => violation.level === ErrorLevel.ERROR);
+    return this._violations.some(violation => violation.level === ErrorLevel.ERROR);
   }
 }

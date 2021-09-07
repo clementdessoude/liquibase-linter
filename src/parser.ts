@@ -1,7 +1,7 @@
-import yaml from 'js-yaml';
+import yaml from "js-yaml";
 
-import { ChangelogFileContent } from 'liquibase/types';
-import { LiquibaseIgnoreFileContent } from 'types';
+import { ChangelogFileContent } from "liquibase/types";
+import { LiquibaseIgnoreFileContent } from "types";
 
 export const parser = (fileContent: string) => {
   try {
