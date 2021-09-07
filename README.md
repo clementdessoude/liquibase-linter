@@ -34,7 +34,7 @@ lint("my/file/path.yaml");
 ### Example in combination with [danger.js](https://danger.systems/js/)
 
 ```ts
-import { fail, danger } from "danger";
+import { fail, warn, danger } from "danger";
 import { lint } from "liquibase-linter";
 
 const updatedFiles = [...danger.git.created_files, ...danger.git.modified_files];
@@ -44,12 +44,17 @@ const liquibaseConfig = {
   liquibaseLinterIgnorePath: ".liquibase-linter-ignore.yaml",
 };
 
+const loggerByLevel = {
+  WARNING: warn,
+  ERROR: fail,
+};
+
 const liquibaseLinterViolations = updatedFiles
   .filter(fileName => fileName.includes("src/main/resources/db/changelog"))
   .flatMap(fileName => lint(fileName, liquibaseIgnoreConfig));
 
 liquibaseLinterViolations.forEach(violation =>
-  fail(`Changeset ${violation.changeSetId} from ${violation.fileName} fails with message: \n    ${violation.message}`)
+  loggerByLevel[violation.level](`Changeset ${violation.changeSetId} from ${violation.fileName} fails with message: \n    ${violation.message}`)
 );
 ```
 

@@ -29,7 +29,6 @@ describe("linter.ts", () => {
           fileName: "src/fixtures/20210609163846-drop-column.yaml",
         },
       ]);
-      expect(mockExit).not.toHaveBeenCalled();
     });
 
     it("should fail on changelog with breaking changes", () => {
@@ -56,6 +55,30 @@ describe("linter.ts", () => {
 
     it("should pass on changelog without breaking changes", () => {
       const violations = lint("src/fixtures/20200115-ff4j.yml", {
+        failOnErrors: false,
+      });
+
+      expect(violations).toStrictEqual([]);
+    });
+
+    it("should print warning on importing sqlFile from other directory", () => {
+      const violations = lint("src/fixtures/202109030956-sql-file-remote.yaml", {
+        failOnErrors: true,
+      });
+
+      expect(violations).toStrictEqual([
+        {
+          level: "WARNING",
+          message: "The changeSet contains a sql script imported from another directory. More details [here](https://github.com/clementdessoude/liquibase-linter/tree/main/src/rules/use-local-sql-files.md)",
+          changeSetId: "1627301803196-1",
+          fileName: "src/fixtures/202109030956-sql-file-remote.yaml",
+        },
+      ]);
+      expect(mockExit).toHaveBeenCalledTimes(0);
+    });
+
+    it("should pass on changelog with sqlFile import from same directory", () => {
+      const violations = lint("src/fixtures/202109030956-sql-file-local.yaml", {
         failOnErrors: false,
       });
 

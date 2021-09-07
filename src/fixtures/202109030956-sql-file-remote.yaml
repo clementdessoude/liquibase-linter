@@ -1,0 +1,7 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1627301803196-1
+      author: Nicolas Ngomai
+      changes:
+        - sqlFile:
+            path: db/fixtures/script.sql
