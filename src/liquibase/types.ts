@@ -1,5 +1,5 @@
 export interface ChangelogFileContent {
-  databaseChangeLog: DatabaseChangeLog[];
+  databaseChangeLog: (DatabaseChangeLog | LiquibaseProperty)[];
 }
 
 export interface DatabaseChangeLog {
@@ -22,4 +22,14 @@ interface SqlFile {
   stripComments?: boolean;
   encoding?: string;
   relativeToChangelogFile?: boolean;
+}
+
+export interface LiquibaseProperty {
+  property: Property;
+}
+
+export interface Property {
+  name: string;
+  value: string;
+  dbms?: string;
 }

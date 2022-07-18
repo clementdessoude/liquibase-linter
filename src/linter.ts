@@ -8,6 +8,7 @@ import { rules } from "./rules";
 import { LinterIgnore } from "./liquibaseIgnore";
 import { parser } from "./parser";
 import { Reporter } from "./reporter";
+import { isDatabaseChangeLog } from "./liquibase/guards";
 
 export const lint = (fileName: string, configuration = defaultConfiguration) => {
   const reporter = new Reporter(fileName);
@@ -18,7 +19,12 @@ export const lint = (fileName: string, configuration = defaultConfiguration) => 
   const doc = parser(fileContent);
   const linterIgnore = new LinterIgnore(configuration.liquibaseLinterIgnorePath, fileName);
 
-  doc.databaseChangeLog.forEach(({ changeSet }) => {
+  doc.databaseChangeLog.forEach(entry => {
+    if (!isDatabaseChangeLog(entry)) {
+      return;
+    }
+
+    const { changeSet } = entry;
     if (linterIgnore.contains(changeSet)) {
       return;
     }
