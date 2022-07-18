@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - property:
+      name: uuid_function
+      value: uuid_generate_v4()
+      dbms: postgresql
+  - changeSet:
+      id: 1657782766843-13
+      author: clementdessoude
+      changes:
+        - sql:
+            sql: CREATE EXTENSION IF NOT EXISTS "uuid-ossp";

@@ -85,6 +85,14 @@ describe("linter.ts", () => {
 
       expect(violations).toStrictEqual([]);
     });
+
+    it("should ignore property declarations", () => {
+      const violations = lint("src/fixtures/20220718075435-property-declaration.yaml", {
+        failOnErrors: false,
+      });
+
+      expect(violations).toStrictEqual([]);
+    });
   });
 
   describe("with json files", () => {
